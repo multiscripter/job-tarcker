@@ -120,6 +120,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# При использовании python manage.py runserver
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
+# При использовании Nginx + Apache2 + mod_wsgi.
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

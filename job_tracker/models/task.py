@@ -2,14 +2,11 @@ from datetime import date
 
 from django.db import models
 
-from job_tracker.models.action import Action
-
 
 class Task(models.Model):
     """Задача."""
 
-    actions = models.ManyToManyField(
-        Action,
+    actions = models.TextField(
         blank=True,
         verbose_name='Действия'
     )

@@ -1,0 +1,143 @@
+body {
+    cursor: default;
+    font-size: 18px;
+    min-width: 320px;
+}
+
+.list-chbox {
+    height: 0;
+    margin-right: 15px;
+    width: 0;
+}
+
+.list-chbox + label {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 7px;
+    width: 100%;
+}
+
+.list-chbox + label:before,
+.list-chbox + label:after {
+    border: 6px solid transparent;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+}
+
+.list-chbox + label:before {
+    border-left: 6px solid #000;
+    left: 4px;
+}
+
+.list-chbox + label:after {
+    border-left: 6px solid #fff;
+    left: 2px;
+}
+
+.list-chbox ~ ul {
+    display: none;
+}
+
+.list-chbox:checked ~ ul {
+    display: block;
+}
+
+.list-chbox:checked + label:before,
+.list-chbox:checked + label:after {
+    border: 6px solid transparent;
+    left: 0;
+}
+
+.list-chbox:checked + label:before {
+    border-top: 6px solid #000;
+    top: 8px;
+}
+
+.list-chbox:checked + label:after {
+    border-top: 6px solid #fff;
+    top: 6px;
+}
+
+.list-chbox + label:hover:before{
+    border-left-color: #f00;
+}
+
+.list-chbox:checked + label:hover:before {
+    border-left-color: transparent;
+    border-top-color: #f00;
+}
+
+.list-item {
+    position: relative;
+}
+
+.list-val {
+    display: inline-block;
+    line-height: 20px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.task-time {
+    float: right;
+}
+
+.task-name {
+    display: inline-block;
+    margin-right: 10px;
+    min-width: 110px;
+}
+
+.total-day {
+    text-align: right;
+}
+
+.task-actions {
+    margin: 0;
+    max-width: 300px;
+}
+
+.task,
+.total-day {
+    padding: 0 5px;
+}
+
+.task:nth-child(2n+1) {
+    background: #f8f9fa;
+}
+
+.total-day {
+    background: #cfe2ff;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .list-chbox + label {
+        top: 3px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 15px;
+    }
+
+    .list-chbox + label {
+        top: 3px;
+    }
+}
+
+@media (min-width: 1280px) {
+    body {
+        font-size: 14px;
+    }
+}
