@@ -11,9 +11,11 @@
 </head>
 <body class="container page-index">
     <div class="row">
-        {% autoescape off %}
-        {{ html }}
-        {% endautoescape %}
+        <div class="col-lg-4 col-md-6 col-sm-8">
+            {% autoescape off %}
+            {{ html }}
+            {% endautoescape %}
+        </div>
     </div>
 </body>
 </html>

@@ -94,7 +94,7 @@ body {
     min-width: 110px;
 }
 
-.total-day {
+.list-item-total {
     text-align: right;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .task,
-.total-day {
+.list-item-total {
     padding: 0 5px;
 }
 
@@ -112,7 +112,7 @@ body {
     background: #f8f9fa;
 }
 
-.total-day {
+.list-item-total {
     background: #cfe2ff;
 }
 

@@ -5,20 +5,27 @@ from django.shortcuts import render
 from job_tracker.models.task import Task
 
 
+def get_time(td):
+    seconds = td.total_seconds()
+    hours, remainder = divmod(seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return '{:02}:{:02}'.format(int(hours), int(minutes))
+
+
 def get_total_html(total):
     if total['level']:
         total[total['level'] - 1] += total[total['level']]
-    html = '<li class="list-item total-day">'
-    html += '<span class="total-day-val">{}</span>'.format(
-        total[total['level']]
+    html = '<li class="list-item list-item-total list-item-total-{}">'.format(
+        total['level']
     )
+    val = get_time(total[total['level']])
+    html += f'<span class="list-item-total-val">{val}</span>'
     html += '</li>'
     return html
 
 
 def build_html(items, total):
     html = '<ul class="list-unstyled">'
-    # is_task = False
     total[total['level']] = timedelta(0)
     for item in items:
         if isinstance(item, int):
@@ -26,19 +33,20 @@ def build_html(items, total):
             html += '<li class="list-item">'
             html += f'<input id="p-{item}" type="checkbox" class="list-chbox">'
             html += f'<label class="list-label" for="p-{item}"></label>'
-            html += '<span class="list-val">{}</span>'.format(item)
+            html += f'<span class="list-val">{item}</span>'
             html += build_html(items[item], total)
             html += '</li>'
             html += get_total_html(total)
             total['level'] -= 1
         else:
-            #is_task = True
             total[total['level']] += item.time
+            t = get_time(item.time)
             html += '<li class="list-item task">'
-            html += '<span class="task-time">{}</span>'.format(item.time)
-            html += '<span class="task-name">{}</span>'.format(item.name)
+            html += f'<span class="task-time">{t}</span>'
+            html += f'<span class="task-name">{item.name}</span>'
             if item.actions:
-                html += '<p class="task-actions">{}</p>'.format(item.actions)
+                text = "<br />".join(item.actions.split("\n"))
+                html += f'<p class="task-actions">{text}</p>'
             html += '</li>'
     html += '</ul>'
     return html
