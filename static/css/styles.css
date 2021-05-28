@@ -116,6 +116,10 @@ body {
     background: #cfe2ff;
 }
 
+.total-plan {
+    float: left;
+}
+
 @media (min-width: 768px) {
     body {
         font-size: 16px;

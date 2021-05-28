@@ -12,14 +12,24 @@ def get_time(td):
     return '{:02}:{:02}'.format(int(hours), int(minutes))
 
 
-def get_total_html(total):
+def get_total_html(items, total, key):
     if total['level']:
         total[total['level'] - 1] += total[total['level']]
     html = '<li class="list-item list-item-total list-item-total-{}">'.format(
         total['level']
     )
     val = get_time(total[total['level']])
-    html += f'<span class="list-item-total-val">{val}</span>'
+    psn = False
+    if total['level'] == 2:
+        plan = len(items[key]) * 8
+        plan_m = plan * 60
+        psn = (total[total['level']].total_seconds() / 60) / (plan_m / 100)
+        psn = round(psn, 2)
+        html += f'<span class="total-plan">{plan}</span>'
+    html += f'<span class="total-val">'
+    if psn:
+        html += f'({psn})% '
+    html += f'{val}</span>'
     html += '</li>'
     return html
 
@@ -36,7 +46,7 @@ def build_html(items, total):
             html += f'<span class="list-val">{item}</span>'
             html += build_html(items[item], total)
             html += '</li>'
-            html += get_total_html(total)
+            html += get_total_html(items, total, item)
             total['level'] -= 1
         else:
             total[total['level']] += item.time
