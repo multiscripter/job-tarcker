@@ -42,8 +42,11 @@ def build_html(items, total):
             total['level'] += 1
             html += '<li class="list-item">'
             html += f'<input id="p-{item}" type="checkbox" class="list-chbox">'
-            html += f'<label class="list-label" for="p-{item}"></label>'
+            html += '<div class="list-chblock">'
+            html += f'<label class="list-label" for="p-{item}">'
             html += f'<span class="list-val">{item}</span>'
+            html += '</label>'
+            html += '</div>'
             html += build_html(items[item], total)
             html += '</li>'
             html += get_total_html(items, total, item)

@@ -1,7 +1,24 @@
+.list-item {
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+}
+
+body,
+.list-chblock,
+.task,
+.list-item-total,
+.list-val {
+    font-size: 18px;
+}
+
 body {
     cursor: default;
-    font-size: 18px;
     min-width: 320px;
+}
+
+.list-chblock {
+    position: relative;
 }
 
 .list-chbox {
@@ -10,33 +27,34 @@ body {
     width: 0;
 }
 
-.list-chbox + label {
+.list-label {
     cursor: pointer;
-    display: inline-block;
-    height: 20px;
+    height: 24px;
+    line-height: 1.5;
     left: 0;
     margin: 0;
     position: absolute;
-    top: 7px;
-    width: 100%;
+    top: 0;
+    width: 12px;
+    z-index: 1;
 }
 
-.list-chbox + label:before,
-.list-chbox + label:after {
+.list-label:before,
+.list-label:after {
     border: 6px solid transparent;
     content: '';
     display: block;
     position: absolute;
-    top: 4px;
+    top: 6px;
 }
 
-.list-chbox + label:before {
+.list-label:before {
     border-left: 6px solid #000;
     left: 4px;
 }
 
-.list-chbox + label:after {
-    border-left: 6px solid #fff;
+.list-label:after {
+    border-left: 6px solid #cfe2ff;
     left: 2px;
 }
 
@@ -48,40 +66,45 @@ body {
     display: block;
 }
 
-.list-chbox:checked + label:before,
-.list-chbox:checked + label:after {
+.list-chbox:checked + div {
+    height: 24px;
+}
+
+.list-chbox:checked + div > label:before,
+.list-chbox:checked + div > label:after {
     border: 6px solid transparent;
     left: 0;
 }
 
-.list-chbox:checked + label:before {
+.list-chbox:checked + div > label:before {
     border-top: 6px solid #000;
     top: 8px;
 }
 
-.list-chbox:checked + label:after {
+.list-chbox:checked + div > label:after {
     border-top: 6px solid #fff;
     top: 6px;
 }
 
-.list-chbox + label:hover:before{
+.list-label:hover:before{
     border-left-color: #f00;
 }
 
-.list-chbox:checked + label:hover:before {
+.list-chbox:checked + div > label:hover:before {
     border-left-color: transparent;
     border-top-color: #f00;
 }
 
-.list-item {
-    position: relative;
+.list-chblock,
+.task,
+.list-item-total,
+.list-val {
+    line-height: 1.5;
 }
 
 .list-val {
     display: inline-block;
-    line-height: 20px;
-    position: relative;
-    vertical-align: middle;
+    margin-left: 14px;
 }
 
 .task-time {
@@ -117,31 +140,45 @@ body {
 }
 
 .total-plan {
-    float: left;
+    margin-right: 5px;
 }
 
 @media (min-width: 768px) {
-    body {
+    body,
+    .list-chblock,
+    .task,
+    .list-item-total,
+    .list-val {
         font-size: 16px;
     }
 
-    .list-chbox + label {
-        top: 3px;
+    .list-label:before,
+    .list-label:after {
+        top: 5px;
     }
 }
 
 @media (min-width: 1024px) {
-    body {
+    body,
+    .list-chblock,
+    .task,
+    .list-item-total,
+    .list-val {
         font-size: 15px;
-    }
-
-    .list-chbox + label {
-        top: 3px;
     }
 }
 
 @media (min-width: 1280px) {
-    body {
+    body,
+    .list-chblock,
+    .task,
+    .list-item-total,
+    .list-val {
         font-size: 14px;
+    }
+
+    .list-label:before,
+    .list-label:after {
+        top: 4px;
     }
 }
