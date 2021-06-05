@@ -3,3 +3,5 @@ __pycache__/
 .idea
 htmlcov/
 *.log
+/.htpasswd
+/access.txt

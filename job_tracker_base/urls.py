@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from base import settings
+from job_tracker_base import settings
 from job_tracker import views
 
 urlpatterns = [
