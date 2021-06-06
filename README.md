@@ -25,3 +25,7 @@ python manage.py runserver
 **Адрес проекта:**
 ```
 http://127.0.0.1:8000/
+```
+**Заценить:**
+
+http://job-tracker.3141.ru/
