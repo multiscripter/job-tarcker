@@ -34,20 +34,23 @@ def get_total_html(items, total, key):
     return html
 
 
-def build_html(items, total):
+def build_html(items, total, parent_p=''):
     html = '<ul class="list-unstyled">'
     total[total['level']] = timedelta(0)
     for item in items:
         if isinstance(item, int):
             total['level'] += 1
             html += '<li class="list-item">'
-            html += f'<input id="p-{item}" type="checkbox" class="list-chbox">'
+            p = str(item)
+            if parent_p:
+                p = f'{parent_p}-{p}'
+            html += f'<input id="p-{p}" type="checkbox" class="list-chbox">'
             html += '<div class="list-chblock">'
-            html += f'<label class="list-label" for="p-{item}">'
+            html += f'<label class="list-label" for="p-{p}">'
             html += f'<span class="list-val">{item}</span>'
             html += '</label>'
             html += '</div>'
-            html += build_html(items[item], total)
+            html += build_html(items[item], total, p)
             html += '</li>'
             html += get_total_html(items, total, item)
             total['level'] -= 1

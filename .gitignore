@@ -5,3 +5,4 @@ htmlcov/
 *.log
 /.htpasswd
 /access.txt
+/db.sqlite3
