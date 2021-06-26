@@ -8,10 +8,22 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script>
+        $(function() {
+            prelast = $('.js-box');
+            while (true) {
+                prelast = prelast.find('> ul > li:last').prev();
+                if (!prelast.find('> ul').length)
+                    break;
+                prelast.find('> input').prop('checked', 'checked');
+            }
+        })
+    </script>
 </head>
 <body class="container page-index">
     <div class="row">
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 js-box">
             {% autoescape off %}
             {{ html }}
             {% endautoescape %}
